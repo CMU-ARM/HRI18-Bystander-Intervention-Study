@@ -1,0 +1,35 @@
+list:
+    - anim_memorymatch_successhand_cozmo_01
+    - anim_memorymatch_successhand_cozmo_02
+    - anim_reacttoblock_admirecubetower_01
+    - anim_memorymatch_successhand_cozmo_03
+    - anim_memorymatch_successhand_cozmo_04
+    - anim_speedtap_playerno_01
+    - anim_rtpkeepaway_playerno_02
+    - anim_rtpkeepaway_playerno_03
+    - anim_keepaway_losegame_02
+    - anim_reacttocliff_turtlerollfail_01
+    - anim_memorymatch_failgame_cozmo_01
+    - anim_memorymatch_failhand_01
+    - anim_speedtap_losegame_intensity03_02
+
+# - anim_reacttocliff_turtlerollfail_01 #angry
+# - anim_speedtap_loseround_intensity02_02 #angry
+# - anim_keepaway_losegame_02 #sad
+# - anim_reacttoblock_admirecubetower_01 #happy
+# - anim_memorymatch_successhand_cozmo_02 #happy
+# - anim_memorymatch_successhand_cozmo_01 #happy
+# - anim_rtpkeepaway_playerno_02 #sad
+# - anim_memorymatch_failgame_cozmo_01 #angry
+# - anim_memorymatch_failhand_01 #angry
+# - anim_keepaway_losehand_02 #angry
+# - anim_speedtap_losegame_intensity02_01 #sad
+# - anim_memorymatch_successhand_cozmo_04 #happy
+# - anim_rtpkeepaway_playerno_03 #sad
+# - anim_rtpkeepaway_playerno_01 #sad
+# - anim_memorymatch_successhand_cozmo_03 #happy
+# - anim_memorymatch_failgame_player_01 #happy
+# - anim_speedtap_losegame_intensity03_02 #angry
+# - anim_speedtap_playerno_01 #sad
+# - majorfail #sad
+# - anim_speedtap_loseround_intensity02_01 #angry

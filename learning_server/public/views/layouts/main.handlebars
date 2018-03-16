@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<title>Learning</title> </head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/page.css">
+<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+
+<script
+  src="https://code.jquery.com/jquery-1.12.4.js"
+  integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+  crossorigin="anonymous"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.js"></script>
+
+<script type="text/javascript" src="js/eventemitter2.min.js"></script>
+<script type="text/javascript" src="js/roslib.min.js"></script>
+<script type='text/javascript' src='js/common.js'></script>
+
+<body>
+    <div id="nav" class=" nav_bar">
+      <div class='col-md-1'>
+        <div class="circle" id='status_circle'></div>
+      </div>
+      <div class='col-md-11'>
+        <div id='nav_name'></div>
+      </div>
+    </div>
+{{{body}}}
+</body>
+</html>
+
+<script>
+  $('document').ready(function(){
+    var url= window.location.href;
+//    console.log(url);
+    if (url.indexOf("learn") >= 0) {
+//      console.log("learning");
+      $("#nav_name").text("Learn - Level "+ {{level}});
+    }
+    else if(url.indexOf("admin") >= 0){
+      $("#nav_name").text("Admin");
+    } else {
+      $("#nav_name").text("Test "+ {{level}} + '- Player ' + "{{player_id}}");
+      player_id = parseInt("{{player_id}}")
+      $('#nav').addClass('p'+player_id+'-color')
+      $('#timer').addClass('p'+player_id+'-timer-color')
+      $('#test-progress-bar').addClass('p'+player_id+'-color')
+    }
+    
+  })
+</script>

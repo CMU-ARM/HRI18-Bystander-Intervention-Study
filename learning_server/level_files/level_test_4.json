@@ -1,0 +1,26 @@
+{
+"test_sequence":{
+    "1":[2,3,0,1],
+    "2":[3,0,2,1]
+},
+"hint":[2,3],
+"text":
+[
+{
+        "character": "⠟",
+        "meaning": "Q"
+    },
+    {
+        "character": "⠥",
+        "meaning": "U"
+    },
+    {
+        "character": "⠭",
+        "meaning": "X"
+    },
+    {
+        "character": "⠕",
+        "meaning": "O"
+    }
+]
+}

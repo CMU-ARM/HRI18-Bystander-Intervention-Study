@@ -1,0 +1,41 @@
+{
+"test_sequence":{
+    "1":[7,2,4,3,5,1,0,6],
+    "2":[2,5,0,7,6,4,3,1]
+},
+"text":
+[
+  {
+        "character": "⠏",
+        "meaning": "P"
+    },
+    {
+        "character": "⠙",
+        "meaning": "D"
+    },
+    {
+        "character": "⠁",
+        "meaning": "A"
+    },
+    {
+        "character": "⠗",
+        "meaning": "R"
+    },
+    {
+        "character": "⠺",
+        "meaning": "W"
+    },
+    {
+        "character": "⠝",
+        "meaning": "N"
+    },
+    {
+        "character": "⠎",
+        "meaning": "S"
+    },
+    {
+        "character": "⠂",
+        "meaning": "B"
+    }
+]
+}

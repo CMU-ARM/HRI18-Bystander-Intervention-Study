@@ -1,0 +1,40 @@
+<div class="container">
+<div class='col-md-12'>
+  <span class='timer' id='timer'>{{learning_time}}:00</span>
+  <div style="padding:5px">
+  Question No<span id="numbers" >0</span>  
+  </div>    
+</div>
+  <div class="row" id="main-section">
+    <br><br><br>
+    <div class="progress col-md-6 col-md-offset-4 col-sm-6 col-sm-offset-3">
+      <div id='test-progress-bar' class="progress-bar" role="progressbar" aria-valuenow="0"
+         aria-valuemin="0" aria-valuemax="100" style="width:0%">
+      </div>
+
+    </div>
+<!--    <div class="col-md-12 question">{{text}}</div> -->
+  </div>
+  <form>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-4 col-sm-7 col-sm-offset-3" style="padding-left:0px">
+      <div class="form-inline col-md-12 col-sm-12" id='form-group'>
+        <label for="answer">Answer</label>
+        <input type="text" class="form-control" id="answer" placeholder="">
+        <button class='btn' id='btn-done' disabled>Submit</button>
+        <button class='btn hidden' id='btn-next' data-loading-text="Processing">Continue</button>
+      </div>
+    </div>
+  </div>
+  </form>
+  
+  <div class="row">
+    <div class="col-md-6 col-md-offset-4 col-sm-6 col-sm-offset-3" id="result_bar">
+    </div>
+  </div>
+</div>
+<script>
+  var cur_level = parseInt("{{level}}")
+  var player_id = parseInt("{{player_id}}")
+</script>
+<script type="text/javascript" src='js/test_page.js'></script>

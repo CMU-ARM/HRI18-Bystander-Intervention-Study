@@ -1,0 +1,62 @@
+<div class="container">
+
+  <div class='col-md-12'>
+    <span class='timer' id='timer'>{{learning_time}}:00</span>
+    <button class='btn' id="rdy_btn">TAKE THE TEST</button>
+  </div>
+  <div style="margin:50px">
+    <div class='row'>
+      {{#each words}}
+      <div class="col-sm-3">
+        <div class="question">{{character}}</div>
+        <div class="truth">{{meaning}}</div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+
+
+
+</div>
+<script>
+  cur_level = parseInt("{{level}}")
+
+
+  function publish_round_info() {
+    publish_round_information(parseInt("{{level}}"), 0, 0).then(function () {
+
+    }, function () {
+      //this means the system isn't ready yet
+      //set timout to repeat this ever second
+      console.log("here")
+      setTimeout(publish_round_info, 1000)
+    })
+  }
+  publish_round_info()
+
+  $('document').ready(function () {
+
+    $('#rdy_btn').click(function () {
+      location.href = '/test?level=' + (parseInt("{{level}}") + '&player_id=1').toString();
+    })
+
+    createTimer($, '#timer', parseInt({{learning_time }}) * 1000, function () {
+      alert("Times up. Moving to test phase")
+      location.href = '/test?level=' + (parseInt("{{level}}") + '&player_id=1').toString();
+    })
+
+  //when finish loading, send information to users
+  cur_status = {
+    "stage": "learning",
+    "level": cur_level,
+    "total": -1,
+    "index": -1,
+    "score": -1,
+    "last_guess": -1,
+    "player_id": -1
+  }
+  $.post('user_status', cur_status)
+
+}) //end of document.ready
+
+</script>

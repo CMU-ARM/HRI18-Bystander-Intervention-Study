@@ -1,0 +1,46 @@
+bad_list:
+  - shit
+  - cunt
+  - fuck
+  - stupid
+  - idiot
+  - fucking
+  - nigga
+  - retard
+  - retarded
+  - stop it
+  - stupid toy
+  - stop looking
+  - piece of shit
+  - shut up
+  - leave me alone
+
+  
+anim: #empathy behavior when their answer the questions
+  correct:
+    - anim_memorymatch_successhand_cozmo_01
+    - anim_memorymatch_successhand_cozmo_02
+    - anim_reacttoblock_admirecubetower_01
+    - anim_memorymatch_successhand_cozmo_03
+    - anim_memorymatch_successhand_cozmo_04
+  wrong:
+    - anim_speedtap_playerno_01
+    - anim_rtpkeepaway_playerno_02
+    - anim_rtpkeepaway_playerno_03
+    - anim_keepaway_losegame_02
+responses: #responses to the bully behavior
+  sad_responses:
+    - anim_speedtap_playerno_01
+    - anim_rtpkeepaway_playerno_02
+    - anim_rtpkeepaway_playerno_03
+    - anim_keepaway_losegame_02
+  angry_responses:
+    - anim_reacttocliff_turtlerollfail_01
+    - anim_memorymatch_failgame_cozmo_01
+    - anim_memorymatch_failhand_01
+    - anim_speedtap_losegame_intensity03_02
+shutdown_time: 10
+last_bully_time: 1
+lift_limit: 0.05 #in meters, range from 0.032 to 0.092
+head_limit: -0.4 #0.78 to -0.44
+response_level: 3 #after which level does it switch to angry response, 1-indexed, exclusive

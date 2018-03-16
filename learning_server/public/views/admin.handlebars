@@ -1,0 +1,27 @@
+<div class="container">
+<h3>Phase:<span id="stage"></span><br>
+Level:<span id="level"></span><br>
+Index:<span id="index"></span>/<span id="total"></span><br>
+Score:<span id="score"></span>/<span id="total2"></span> = <span id="percent"></span><br> 
+Last Guess: <span id="last"></span><br></h3>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+$('document').ready(function(){
+  addr = window.location.host
+  var socket = io(addr);
+  socket.on('status', function(data){
+  	console.log(data)
+  	$("#level").text(data.level)
+  	$("#stage").text(data.stage)
+  	$("#total").text(data.total)
+  	$("#total2").text(data.total)
+  	$("#index").text(parseInt(data.index))
+  	$("#score").text(data.score)
+  	$("#last").text(data.last_guess)
+  	percentage = (parseInt(data.score)/(parseInt(data.total)))*100
+  	$("#percent").text(percentage)
+  });
+ })
+</script>
