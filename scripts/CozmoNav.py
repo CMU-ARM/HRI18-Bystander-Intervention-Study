@@ -11,10 +11,13 @@ from nav_msgs.msg import(
 
 import numpy as np
 import time
+from rospkg import RosPack
 from lab_ros_perception.ArucoTagModule import ArucoTagModule
 import math
 import copy
 import roslaunch
+import ros
+import os
 
 from kalman_filter import KLF
 
@@ -57,6 +60,11 @@ class RobotAgent():
         #probably will use Kinect instead
         #self._cur_pose = self.get_pose()
 
+        #find the roslaunch file that launches kinect2
+        rp = RosPack()
+        dirpath = rp.get_path("lab_ros_perception")
+        self._aruco_kinect_launchfile_dir = os.path.join(dirpath, 'launch','aruco_kinect2.launch')
+
 
         self.odom_pose = copy.deepcopy(self._cur_pose)        
 
@@ -71,10 +79,9 @@ class RobotAgent():
 
         uuid = roslaunch.rlutil.get_or_generate_uuid(None, True)
         roslaunch.configure_logging(uuid)
-        self._aruco_launch = roslaunch.parent.ROSLaunchParent(uuid, ["/home/zhi/Dev/ros_ws/src/lab_ros_perception/launch/aruco_kinect2.launch"])
-        print("pre")
+
+        self._aruco_launch = roslaunch.parent.ROSLaunchParent(uuid, [self._aruco_kinect_launchfile_dir])
         self._aruco_launch.start()
-        print("post")
 
 
     def pose_update(self, msg):
