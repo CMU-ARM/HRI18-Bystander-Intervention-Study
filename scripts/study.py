@@ -28,6 +28,7 @@ from cozmo_driver.msg import(
 )
 import actionlib
 from actionlib_msgs.msg import GoalStatus
+from std_srvs.srv import SetBool
 from std_msgs.msg import String
 import yaml
 import random
@@ -107,6 +108,10 @@ class bullyObj(object):
         rospy.Subscriber('study_round', LearnStatus, self._stage_update, queue_size=10)
         rospy.Subscriber('cozmo/joint_states', JointState, self._joint_callback, queue_size=1)
 
+        #speech toggl
+        rospy.wait_for_service('success_google_stt/toggle_stt')
+        self._stt_toggle = rospy.ServiceProxy('success_google_stt/toggle_stt', SetBool)
+
         self._oled_pub = rospy.Publisher('cozmo/oled_face',Image,queue_size=1)
         self._lift_pub = rospy.Publisher('cozmo/lift_height',Float64, queue_size=1)
         self._head_pub = rospy.Publisher('cozmo/head_angle', Float64, queue_size=1)
@@ -144,6 +149,7 @@ class bullyObj(object):
             print(self._level)
             self._run_flag = True
             self._start = True
+            self._stt_toggle(True) #start STT
             self.loginfo("system:robot-start-moving")
         #we look at the participant when it's their turn
         if(self._player == 0):
@@ -157,6 +163,8 @@ class bullyObj(object):
         self.loginfo("kill switch activated")
         self._kill_switch = msg.data
         self._coznav.stop()
+        #also stops STT
+        self._stt_toggle(False)
 
 
     def _joint_callback(self, msg):

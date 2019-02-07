@@ -1,6 +1,6 @@
 <launch>
   <!-- launch TTS here to save money -->
-  <include file="$(find lab_ros_speech_to_text)/launch/google_stt.launch"/>
+  <include file="$(find success_google_stt)/launch/google_stt.launch"/>
   <!-- launch Cozmo driver -->
   <include file="$(find cozmo_driver)/launch/base.launch" />
 

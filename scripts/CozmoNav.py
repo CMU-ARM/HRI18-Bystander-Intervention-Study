@@ -12,7 +12,8 @@ from nav_msgs.msg import(
 import numpy as np
 import time
 from rospkg import RosPack
-from lab_ros_perception.ArucoTagModule import ArucoTagModule
+#from lab_ros_perception.ArucoTagModule import ArucoTagModule
+from success_ros_aruco import ArucoTagModule
 import math
 import copy
 import roslaunch

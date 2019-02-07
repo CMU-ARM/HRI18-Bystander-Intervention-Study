@@ -14,8 +14,9 @@ This repository contains the code that ran the user study described in *Inducing
 ### Software/ROS Dependencies
 - ROS Kinetic
 - Nodejs
-- [CMU_ARM/lab_ros_speech_to_text](https://github.com/CMU-ARM/lab_ros_speech_to_text)
-- [CMU_ARM/lab_ros_aruco](https://github.com/CMU-ARM/lab-ros-aruco)
+- [SUCCESS-MURI/success_google_stt](https://github.com/SUCCESS-MURI/success_google_stt)
+- [SUCCESS-MURI/success_ros_msgs](https://github.com/SUCCESS-MURI/success_ros_msgs)
+- [SUCCESS-MURI/success_ros_aruco](https://github.com/SUCCESS-MURI/success_ros_aruco)
 - [iai_kinect2](https://github.com/code-iai/iai_kinect2)
 - [audio_common](http://wiki.ros.org/audio_common)
 - [our heavily modified cozmo_driver](https://github.com/CMU-ARM/cozmo_driver)
