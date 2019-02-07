@@ -1,6 +1,8 @@
 # Bystander Intervention Study
-COPYRIGHT(C) 2018 - CMU Assitive Robots Lab - Code released under MIT.\
+COPYRIGHT(C) 2019 - CMU Assitive Robots Lab - Code released under MIT.\
 Contact - Zhi - zhi.tan@ri.cmu.edu
+
+**Update: This branch (replication) consist of code we are working on to be used in upcoming replication studies. For the original code used in the 2018 paper, please look at the Master branch.**
 
 This repository contains the code that ran the user study described in *Inducing Bystander Interventions During Robot Abuse with Social Mechanisms* by Tan et al. (2018). Due to the experimental nature of the work, the code does not meet industry coding guidelines / best practices and would need modifications to work on different machines. We provided a brief guide and pointers on how the system work and requires hardwares.
 
