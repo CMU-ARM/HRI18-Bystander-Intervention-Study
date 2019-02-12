@@ -20,7 +20,7 @@ import roslaunch
 import ros
 import os
 
-from kalman_filter import KLF
+#from kalman_filter import KLF
 
 def Quaternion_toEulerianAngle(x, y, z, w):
     ysqr = y*y
@@ -47,11 +47,17 @@ class RobotAgent():
     def __init__(self):
 
         self._aruco_launch = None
-        self.restart_aruco()
+        #self.restart_aruco()
+        #find the roslaunch file that launches aruco library
+        #rp = RosPack()
+        #dirpath = rp.get_path("success_ros_aruco")
+        #self._aruco_kinect_launchfile_dir = os.path.join(dirpath, 'launch','kinect2_aruco.launch')
+        #self.restart_aruco()
+
 
         #small fix for the threading issue
         self._last_pose_time = rospy.Time.now()        
-        self._klf = KLF()
+        #self._klf = KLF()
         self._cur_pose = Pose2D()    
 
         self._tag_module = ArucoTagModule()
@@ -60,12 +66,6 @@ class RobotAgent():
         
         #probably will use Kinect instead
         #self._cur_pose = self.get_pose()
-
-        #find the roslaunch file that launches kinect2
-        rp = RosPack()
-        dirpath = rp.get_path("lab_ros_perception")
-        self._aruco_kinect_launchfile_dir = os.path.join(dirpath, 'launch','aruco_kinect2.launch')
-
 
         self.odom_pose = copy.deepcopy(self._cur_pose)        
 
@@ -101,10 +101,10 @@ class RobotAgent():
 
             # #HACK 1, we ignore any poses Z that are beyond a range
             p = pose.pose            
-            if(p.position.z < 0 or p.position.z > 0.25):
+            #if(p.position.z < 0 or p.position.z > 0.25):
                 #rospy.loginfo("sys:restarting aruco")
-                self.restart_aruco()
-                return
+                #self.restart_aruco()
+                #return
             #     print("Incorrect TAG 0 found")
             #print(p)
             #     return 
@@ -116,7 +116,7 @@ class RobotAgent():
             yaw, pitch, roll = Quaternion_toEulerianAngle(p.orientation.x, p.orientation.y, p.orientation.z, p.orientation.w)
             state = np.array([p.position.x, p.position.y, np.deg2rad(roll)])
             #run kalman filter
-            filtered_state = self._klf.filter(state, dt)
+            #filtered_state = self._klf.filter(state, dt)
 
             self._cur_pose.x = p.position.x#filtered_state[0]
             self._cur_pose.y = p.position.y#filtered_state[1]
@@ -344,16 +344,19 @@ def main():
     r = rospy.Rate(1)
     target_pose = Pose2D()
     target_pose.x = 0
-    target_pose.y = 0.25
-    target_pose.theta = 0
+    target_pose.y = 0
+    target_pose.theta = 180#3.1415/2
     rotation_threshold = 3
+    print("start Initializing")
     cozNav = CozmoNav()
+    print("Finish Initializing")
     time.sleep(1)
     cozNav._agent.stop()
-    while True:
+    while not rospy.is_shutdown():
 
         pos_flag, diff, rot_diff = cozNav.in_position(target_pose)
-        while pos_flag:
+        print(pos_flag, diff, rot_diff)
+        while pos_flag and not rospy.is_shutdown():
             r.sleep()
             pos_flag, diff, rot_diff = cozNav.in_position(target_pose)
 

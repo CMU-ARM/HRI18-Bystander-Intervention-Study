@@ -2,6 +2,8 @@
 
 behavior='Invalid'
 empathy='Invalid'
+ROS_DIRECTORY=~/Dev/cozmo_ws
+PACKAGE_PATH=~/Dev/cozmo_ws/src/HRI18-Bystander-Intervention-Study
 
 #enter participant ID
 echo "Enter Participant ID:"
@@ -53,14 +55,14 @@ select yn in "Yes" "No"; do
 done
 S_NAME="STUDY_SESSION"
 
-tmux new-session -d -s $S_NAME "echo window-1 pane-1; nodejs ~/Dev/ros_ws/src/bystander_intervention_study/learning_server/server.js $BAG_PATH"
+tmux new-session -d -s $S_NAME "echo window-1 pane-1; nodejs $PACKAGE_PATH/learning_server/server.js $BAG_PATH" 
 tmux  split-window -t $S_NAME -h\;\
-    send-keys -t $S_NAME:0.1 source\ ~/Dev/ros_ws/devel/setup.bash C-m \;\
+    send-keys -t $S_NAME:0.1 source\ $ROS_DIRECTORY/devel/setup.bash C-m \;\
     send-keys -t $S_NAME:0.1 roslaunch\ bystander_intervention_study\ base.launch\ bag_path:=$BAG_PATH C-m \;\
     
 echo "\n RUNNING BACKGROUND PROCESS \n"
 sleep 15
-source ~/Dev/ros_ws/devel/setup.bash
+source $ROS_DIRECTORY/devel/setup.bash
 rostopic list | grep kinect
 
 
@@ -79,11 +81,11 @@ select yn in "Yes" "No"; do
         No ) exit;;
     esac
 done    
-tmux split-window -h -t $S_NAME:0 'source ~/Dev/ros_ws/devel/setup.bash;roslaunch bystander_intervention_study cozmo.launch' \; \
+tmux split-window -h -t $S_NAME:0 'source $ROS_DIRECTORY/devel/setup.bash;roslaunch bystander_intervention_study cozmo.launch' \; \
     split-window -h\;\
-    send-keys -t $S_NAME:0.3 source\ ~/Dev/ros_ws/devel/setup.bash C-m \;\
+    send-keys -t $S_NAME:0.3 source\ $ROS_DIRECTORY/devel/setup.bash C-m \;\
     send-keys -t $S_NAME:0.3 sleep\ 5 C-m \;\
-    send-keys -t $S_NAME:0.3 cd\ ~/Dev/ros_ws/src/bystander_intervention_study/scripts C-m \; \
+    send-keys -t $S_NAME:0.3 cd\ $ROS_DIRECTORY/src/bystander_intervention_study/scripts C-m \; \
     send-keys -t $S_NAME:0.3 rosrun\ bystander_intervention_study\ study.py\ _empathy_flag:=$empathy\ _bully_reaction:=$behavior C-m \; \
     #\n  \n $CMD \n
             #split-window -d 'echo window-1 pane-2; '

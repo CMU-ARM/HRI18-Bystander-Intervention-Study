@@ -53,9 +53,9 @@ return timer
 
 //var ros_url = 'ws://192.168.1.101:9090'
 //var ros_url = 'ws://128.237.129.248:9090'
-var ros_url = 'ws://GS15619.SP.CS.CMU.EDU:9090'
+//var ros_url = 'ws://GS15619.SP.CS.CMU.EDU:9090'
 //ros_url = 'ws://128.0.0.1:9090'
-//ros_url = 'ws://localhost:9090'
+var ros_url = 'ws://localhost:9090'
 round_topic = null
 ros = new ROSLIB.Ros({
   url : ros_url
@@ -71,7 +71,7 @@ ros.on('connection', function() {
   round_topic = new ROSLIB.Topic({
     ros:ros,
     name: "/study_round",
-    messageType: "bully_study/LearnStatus"
+    messageType: "bystander_intervention_study/LearnStatus"
   })
 
 });

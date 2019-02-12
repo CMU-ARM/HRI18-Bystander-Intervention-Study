@@ -3,7 +3,7 @@
 from flask import Flask
 import flask
 import rospy
-from bully_study.msg import(
+from bystander_intervention_study.msg import(
     EmpathyGoal,
     EmpathyAction
 )
@@ -15,7 +15,7 @@ name = "empathy_relay"
 rospy.init_node(name)
 
 client = actionlib.SimpleActionClient('empathy_channel',EmpathyAction)
-publisher = rospy.Publisher('kill_switch',Bool)
+publisher = rospy.Publisher('kill_switch',Bool,queue_size=10)
 app = Flask(name)
 
 @app.route("/kill_switch")

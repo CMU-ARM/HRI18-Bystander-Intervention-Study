@@ -20,7 +20,6 @@ from geometry_msgs.msg import (
 )
 
 
-from lab_ros_speech_to_text.msg import Speech as Speech_msg
 from cozmo_driver.msg import(
     AnimAction,
     AnimGoal
@@ -31,7 +30,7 @@ from std_msgs.msg import String
 import yaml
 import random
 from CozmoNav import CozmoNav
-from bully_study.msg import LearnStatus
+from bystander_intervention_study.msg import LearnStatus
 
 class EvalObj(object):
 

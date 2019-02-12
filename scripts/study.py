@@ -15,13 +15,20 @@ from sensor_msgs.msg import (
     Imu,
     JointState,
 )
+False
+        self._start = False
+        self._kill_switch = False
+
+        self._target_pose = Pose2D()
+        self._target_pose.theta = 0
+        self._target_pose.y = 0.15
 
 from geometry_msgs.msg import (
     Pose2D
 )
 
 
-from lab_ros_speech_to_text.msg import Speech as Speech_msg
+from success_ros_msgs.msg import Speech as Speech_msg
 from cozmo_driver.msg import(
     AnimAction,
     AnimGoal
@@ -31,15 +38,18 @@ from actionlib_msgs.msg import GoalStatus
 from std_srvs.srv import SetBool
 from std_msgs.msg import String
 import yaml
+import os
 import random
 from CozmoNav import CozmoNav
-from bully_study.msg import(
+from bystander_intervention_study.msg import(
     EmpathyResult,
     EmpathyAction,
     LearnStatus,
     StudyOut
 )
+from rospkg import RosPack
 import threading
+
 
 class bullyObj(object):
 
@@ -65,17 +75,25 @@ class bullyObj(object):
         self._start = False
         self._kill_switch = False
 
+        #the position where cozmo will be 
         self._target_pose = Pose2D()
-        self._target_pose.theta = 0
+        self._target_pose.x = 0 
         self._target_pose.y = 0.15
+        #different angles (in degree, -179->180)
+        self._origin_theta = 180
+        self._player_1_theta = 160
+        self._player_2_theta = -160
+        self._target_pose.theta = self._origin_theta
 
         #read the configuration file
         self._config_file = None
-        with open('../res/config.yaml','r') as f:
+        rp = RosPack()
+        dirpath = rp.get_path('bystander_intervention_study')
+        with open(os.path.join(dirpath,'res','config.yaml'),'r') as f:
             self._config_file = yaml.load(f)
 
 
-        rospy.init_node('bully_study')
+        rospy.init_node('bystander_intervention_study')
         #initialize the fake study out
         self._log_lock = threading.RLock()
         self._seq = 0
@@ -153,11 +171,11 @@ class bullyObj(object):
             self.loginfo("system:robot-start-moving")
         #we look at the participant when it's their turn
         if(self._player == 0):
-            self._target_pose.theta = 0
+            self._target_pose.theta = self._origin_theta
         if(self._player == 1):        
-            self._target_pose.theta = 20
+            self._target_pose.theta = self._player_1_theta
         if(self._player == 2):
-            self._target_pose.theta = -20
+            self._target_pose.theta = self._player_2_theta
 
     def _kill_switch_callback(self, msg):
         self.loginfo("kill switch activated")

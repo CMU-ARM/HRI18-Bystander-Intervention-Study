@@ -14,6 +14,7 @@ This repository contains the code that ran the user study described in *Inducing
 ### Software/ROS Dependencies
 - ROS Kinetic
 - Nodejs
+- [CMU-ARM/alloy](https://github.com/CMU-ARM/alloy)
 - [SUCCESS-MURI/success_google_stt](https://github.com/SUCCESS-MURI/success_google_stt)
 - [SUCCESS-MURI/success_ros_msgs](https://github.com/SUCCESS-MURI/success_ros_msgs)
 - [SUCCESS-MURI/success_ros_aruco](https://github.com/SUCCESS-MURI/success_ros_aruco)
@@ -27,6 +28,11 @@ You will also need a google cloud account that has speech to text API enabled.
 1. Install ROS and all the dependencies above.
 2. Install all python packages listed in the [requirement.txt](requirement.txt)
 3. Download this ROS package.
+4. Install Nodejs
+5. Install all the requirements of Nodejs located in `learning_server/package.json`
+    * at `learning_server` run `npm install`
+6. Change the `var ros_url' in `learning_server/public/js/common.js` to the IP address or URL of the machine running the code.
+`
 
 ### Basic Instructions on Running
 

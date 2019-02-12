@@ -1,0 +1,14 @@
+<launch>
+
+ <!-- First launch the kinect2 bridge -->
+  <include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch">
+    <arg name="publish_tf" value="true" />
+  </include>
+  <!-- static_transform_publisher x y z roll pitch yaw frame_id child_frame_id  period_in_ms -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="link1_broadcaster" args="0 0 1.24 3.1415/2 3.1415 0 base kinect2_link" />
+  <!-- ARUCO NODE -->
+  <include file="$(find success_ros_aruco)/launch/base_aruco_node.launch" />
+  <!-- launch Cozmo driver -->
+  <include file="$(find cozmo_driver)/launch/base.launch" />
+
+</launch>
