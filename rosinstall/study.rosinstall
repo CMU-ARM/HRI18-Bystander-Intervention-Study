@@ -1,0 +1,22 @@
+- git:
+    local-name: HRI18-Bystander-Intervention-Study
+    uri: git@github.com:CMU-ARM/HRI18-Bystander-Intervention-Study.git
+    version: replicaiton-v1.0.0
+- git:
+    local-name: camera_info_manager_py
+    uri: https://github.com/ros-perception/camera_info_manager_py.git
+- git:
+    local-name: cozmo_driver
+    uri: git@github.com:CMU-ARM/cozmo_driver.git
+- git:
+    local-name: iai_kinect2
+    uri: https://github.com/code-iai/iai_kinect2.git
+- git:
+    local-name: success_google_stt
+    uri: git@github.com:SUCCESS-MURI/success_google_stt.git
+- git:
+    local-name: success_ros_aruco
+    uri: git@github.com:SUCCESS-MURI/success_ros_aruco.git
+- git:
+    local-name: success_ros_msgs
+    uri: https://github.com/SUCCESS-MURI/success_ros_msgs

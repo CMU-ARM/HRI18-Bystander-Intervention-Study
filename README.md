@@ -28,6 +28,7 @@ You will also need a google cloud account that has speech to text API enabled.
 
 ### Installation
 1. Install ROS and all the dependencies above.
+    * We included a `.rosintall` file that simplifies the process, `wstool update study.rosinstall`
 2. Install all python packages listed in the [requirement.txt](requirement.txt)
 3. Download this ROS package.
 4. Install Nodejs
