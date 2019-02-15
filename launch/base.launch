@@ -4,9 +4,10 @@
   <include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch">
     <arg name="publish_tf" value="true" />
   </include>
-
   <!-- static_transform_publisher x y z roll pitch yaw frame_id child_frame_id  period_in_ms -->
   <node pkg="tf2_ros" type="static_transform_publisher" name="link1_broadcaster" args="0 0 1.24 3.1415/2 3.1415 0 base kinect2_link" />
+  <!-- ARUCO NODE -->
+  <include file="$(find success_ros_aruco)/launch/base_aruco_node.launch" /> 
 
   <!-- launch rosbridge server -->
   <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
@@ -27,7 +28,7 @@
 
   <!-- rosbag recording -->
   <node pkg="rosbag" type="record" name="rosbag_status_record"
-    args="--split --size=2048 -o $(arg bag_path)/bully.bag /rosout /kinect2/hd/image_mono_rect/compressed /kinect2/hd/camera_info /markersAruco /stt /tf /study_round 
+    args="--split --size=2048 -o $(arg bag_path)/bully.bag /rosout /kinect2/hd/image_mono_rect/compressed /kinect2/hd/camera_info /aruco_node/markers  /success_google_stt/stt /tf /study_round 
         /cozmo/imu /cozmo/joint_states /empathy_channel /audio/audio /rosout_agg /study_out /diagnostics"
   />
 

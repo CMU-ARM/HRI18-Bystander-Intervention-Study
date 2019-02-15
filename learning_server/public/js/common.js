@@ -1,3 +1,10 @@
+
+//var ros_url = 'ws://192.168.1.101:9090'
+//var ros_url = 'ws://128.237.129.248:9090'
+var ros_url = 'ws://GS15619.SP.CS.CMU.EDU:9090'
+//var ros_url = 'ws://128.0.0.1:9090'
+//var ros_url = 'ws://localhost:9090'
+
 function padding(number, length){
   num_str = number.toString()
   while(num_str.length < length){
@@ -50,12 +57,6 @@ var timer = setInterval(function(){
 return timer
 }
 
-
-//var ros_url = 'ws://192.168.1.101:9090'
-//var ros_url = 'ws://128.237.129.248:9090'
-//var ros_url = 'ws://GS15619.SP.CS.CMU.EDU:9090'
-//ros_url = 'ws://128.0.0.1:9090'
-var ros_url = 'ws://localhost:9090'
 round_topic = null
 ros = new ROSLIB.Ros({
   url : ros_url

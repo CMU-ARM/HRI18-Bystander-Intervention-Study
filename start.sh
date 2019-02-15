@@ -81,19 +81,14 @@ select yn in "Yes" "No"; do
         No ) exit;;
     esac
 done    
-tmux split-window -h -t $S_NAME:0 'source $ROS_DIRECTORY/devel/setup.bash;roslaunch bystander_intervention_study cozmo.launch' \; \
-    split-window -h\;\
-    send-keys -t $S_NAME:0.3 source\ $ROS_DIRECTORY/devel/setup.bash C-m \;\
-    send-keys -t $S_NAME:0.3 sleep\ 5 C-m \;\
-    send-keys -t $S_NAME:0.3 cd\ $ROS_DIRECTORY/src/bystander_intervention_study/scripts C-m \; \
-    send-keys -t $S_NAME:0.3 rosrun\ bystander_intervention_study\ study.py\ _empathy_flag:=$empathy\ _bully_reaction:=$behavior C-m \; \
-    #\n  \n $CMD \n
-            #split-window -d 'echo window-1 pane-2; '
+
+tmux new-window -t $S_NAME -n cozmo_launch 
+tmux send-keys -t cozmo_launch source\ $ROS_DIRECTORY/devel/setup.bash Enter
+tmux send-keys -t cozmo_launch roslaunch\ bystander_intervention_study\ cozmo.launch\ bag_path:=$BAG_PATH Enter
+
+tmux split-window -t cozmo_launch -h
+tmux send-keys -t cozmo_launch.1 source\ $ROS_DIRECTORY/devel/setup.bash Enter
+tmux send-keys -t cozmo_launch.1 sleep\ 5 C-m Enter
+tmux send-keys -t cozmo_launch.1 cd\ $ROS_DIRECTORY/src/bystander_intervention_study/scripts Enter
+tmux send-keys -t cozmo_launch.1 rosrun\ bystander_intervention_study\ study.py\ _empathy_flag:=$empathy\ _bully_reaction:=$behavior C-m Enter
 tmux attach-session -t $S_NAME
-# 19
-# down vote
-# accepted
-# tmux new -d -s my-session 'echo window-1 pane-1; sleep 8' \; \
-#           split-window -d 'echo window-1 pane-2; sleep 6' \; down-pane \; \
-#             new-window -d 'echo window-2;        sleep 4' \; next-window \; \
-#                 attach \;

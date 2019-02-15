@@ -13,15 +13,8 @@ from sensor_msgs.msg import (
     CameraInfo,
     BatteryState,
     Imu,
-    JointState,
+    JointState
 )
-False
-        self._start = False
-        self._kill_switch = False
-
-        self._target_pose = Pose2D()
-        self._target_pose.theta = 0
-        self._target_pose.y = 0.15
 
 from geometry_msgs.msg import (
     Pose2D
@@ -115,13 +108,16 @@ class bullyObj(object):
 
         self._empathy_server =actionlib.SimpleActionServer('empathy_channel', EmpathyAction, self._empathy_callback, auto_start = False)
         self._empathy_server.start()
-
+        rospy.loginfo("waiting for behavior server")
         self._behavior_asc.wait_for_server()
+        rospy.loginfo("found behavior server")
+        rospy.loginfo("waiting for animation server")
         self._anim_asc.wait_for_server()
+        rospy.loginfo("found animation server")
         #subscribe to channels
         rospy.Subscriber('kill_switch', Bool, self._kill_switch_callback, queue_size=1)
         rospy.Subscriber('cozmo/imu', Imu, self._imu_callback, queue_size=1)
-        rospy.Subscriber('stt', Speech_msg, self._stt_callback, queue_size=1)
+        rospy.Subscriber('/success_google_stt/stt', Speech_msg, self._stt_callback, queue_size=1)
         #rospy.Subscriber('empathy_channel', String, self._empathy_callback, queue_size=1)
         rospy.Subscriber('study_round', LearnStatus, self._stage_update, queue_size=10)
         rospy.Subscriber('cozmo/joint_states', JointState, self._joint_callback, queue_size=1)
@@ -129,13 +125,16 @@ class bullyObj(object):
         #speech toggl
         rospy.wait_for_service('success_google_stt/toggle_stt')
         self._stt_toggle = rospy.ServiceProxy('success_google_stt/toggle_stt', SetBool)
+        rospy.loginfo("Google STT initialized")
 
         self._oled_pub = rospy.Publisher('cozmo/oled_face',Image,queue_size=1)
         self._lift_pub = rospy.Publisher('cozmo/lift_height',Float64, queue_size=1)
         self._head_pub = rospy.Publisher('cozmo/head_angle', Float64, queue_size=1)
         self._say_pub = rospy.Publisher('cozmo/say',String, queue_size=1)
+        #
         self._coznav = CozmoNav()
         self._coznav._agent.stop()
+        self.loginfo("CozNav Initialized")
         #counter for when it was last bullied
         self._last_bullied_time = rospy.Time.now()
         self._current_stage = 0 #a numerical value that say which stage of the round we are in
